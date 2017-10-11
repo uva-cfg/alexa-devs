@@ -1,0 +1,19 @@
+{
+  "name": "alexa-devs",
+  "version": "1.0.0",
+  "description": "A virtual assistant for UVa students.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uva-cfg/alexa-devs.git"
+  },
+  "author": "Code for Good @ UVa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uva-cfg/alexa-devs/issues"
+  },
+  "homepage": "https://github.com/uva-cfg/alexa-devs#readme"
+}
