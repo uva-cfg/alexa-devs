@@ -1,5 +1,6 @@
 // index.js
 // Alexa Dev Team Fall 2017
+// yay
 // Code for Good @UVa
 
 'use strict';
