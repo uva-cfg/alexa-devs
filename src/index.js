@@ -20,10 +20,17 @@ const handlers = {
     'LaunchRequest': function () {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
       //TEST: this.emit('FeatureOneIntent');
+      'Unhandled': function(){
+        this.emit(':ask',"I do not understand.");
+      }
     },
     // Feature1Intent when user says 'Show feature one.'
     'FeatureOneIntent': function () {
       let speechOutput = feature1.sendResponse;
+      this.emit(':tell', speechOutput);
+    },
+    'PhoneNumberIntent': function () {
+      let speechOutput = phoneNumbers.sendResponse;
       this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
