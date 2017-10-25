@@ -21,9 +21,10 @@ const handlers = {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
       //TEST: this.emit('FeatureOneIntent');
     },
-    // Feature1Intent when user says 'Show feature one.'
+    // this is where the user will ask alexa, what is "example of colloqialism here"?
     'ColloqIntent': function () {
-      let speechOutput = colloq.sendResponse;
+      var intentValue = this.event.request.intent.slots.SlotName.value;
+      let speechOutput = colloq.sendResponse( intentValue );
       this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
