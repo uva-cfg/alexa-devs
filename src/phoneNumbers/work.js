@@ -10,3 +10,6 @@ function getPhone(){
 
 
 }
+module.exports = {
+  getPhone: getPhone(),
+}
