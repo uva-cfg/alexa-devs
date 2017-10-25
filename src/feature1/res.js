@@ -2,15 +2,16 @@
 // handles user input and response
 
 var Alexa = require('alexa-sdk');
-const colloqs = require('colloqs.json');
+var colloqs = require('colloqs.json');
+var index = require('index.js');
 
-function sendResponse( intentValue) {
+function sendResponse() {
   for( var key in colloqs ) {
-      if( key == intentValue ) var res = colloqs[key];  //check later to make sure that the intent that we are getting lines up with the keys
+      if( key == index.slotValue ) var res = colloqs[key];  //check later to make sure that the intent that we are getting lines up with the keys
   }
   return (res);
 }
 
 module.exports = {
-  sendResponse: sendResponse()
+    sendResponse : sendResponse()
 }
