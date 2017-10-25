@@ -2,11 +2,14 @@
 // handles user input and response
 
 var Alexa = require('alexa-sdk');
+var res = "";
 
 function sendResponse() {
-  console.log(this);
-  //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-  return ('sorry, I don\'t have that functionality yet.');
+  const colloqs = require('colloqs.json');
+  for( var key in colloqs ) {
+      if( key == intent ) res = colloqs[key];
+  }
+  return (res);
 }
 
 module.exports = {

@@ -5,7 +5,7 @@
 'use strict';
 
 // load additional files/modules needed
-const feature1 = require('./feature1/res.js');
+const colloq = require('./feature1/res.js');
 const Alexa = require('alexa-sdk');
 
 // define constants
@@ -22,8 +22,8 @@ const handlers = {
       //TEST: this.emit('FeatureOneIntent');
     },
     // Feature1Intent when user says 'Show feature one.'
-    'FeatureOneIntent': function () {
-      let speechOutput = feature1.sendResponse;
+    'ColloqIntent': function () {
+      let speechOutput = colloq.sendResponse;
       this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
