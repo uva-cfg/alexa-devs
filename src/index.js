@@ -7,7 +7,7 @@
 // load additional files/modules needed
 const feature1 = require('./feature1/res.js');
 const Alexa = require('alexa-sdk');
-
+var mySlot = this.event.request.intent.slots.SlotName.value;
 // define constants
 const HELP_MESSAGE = "Welcome to Cav Assistant. For information on my capabilities, ask me to tell you what I can do.";
 const HELP_REPROMPT = "Hi there. Ask me to tell you a U.V.A. tradition or for the phone number of a place nearby.";
@@ -41,6 +41,10 @@ const handlers = {
       this.emit(':tell', STOP_MESSAGE);
     }
 };
+
+module.exports = {
+    slotValue : mySlot
+}
 
 // Give the handler object and it's functions to the lambda for
 // execution
