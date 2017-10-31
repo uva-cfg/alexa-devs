@@ -7,6 +7,7 @@
 
 // load additional files/modules needed
 const feature1 = require('./feature1/res.js');
+const slotExample = require('./slotExample/res.js');
 const Alexa = require('alexa-sdk');
 
 // define constants
@@ -22,10 +23,23 @@ const handlers = {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
       //TEST: this.emit('FeatureOneIntent');
     },
-    // Feature1Intent when user says 'Show feature one.'
-    'FeatureOneIntent': function () {
-      let speechOutput = feature1.sendResponse;
+    // Slot Example Intent to show slot passing
+    'SlotExampleIntent': function () {
+
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot
+      let slotVal = this.event.request.intent.slots.animal.value;
+      console.log(slotVal);
+
+      // construct response
+      let speechOutput = slotExample.sendResponse(slotVal);
       this.emit(':tell', speechOutput);
+    },
+    'FeatureOneIntent': function () {
+     let speechOutput = feature1.sendResponse;
+     this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
     'AMAZON.HelpIntent': function () {
@@ -42,6 +56,27 @@ const handlers = {
       this.emit(':tell', STOP_MESSAGE);
     }
 };
+
+// function to delegate slot collection to Alexa
+function delegateSlotCollection(){
+  console.log("in delegateSlotCollection");
+  console.log("current dialogState: "+this.event.request.dialogState);
+    if (this.event.request.dialogState === "STARTED") {
+      console.log("in Beginning");
+      var updatedIntent=this.event.request.intent;
+      this.emit(":delegate", updatedIntent);
+    } else if (this.event.request.dialogState !== "COMPLETED") {
+      console.log("in not completed");
+      // return a Dialog.Delegate directive with no updatedIntent property.
+      this.emit(":delegate");
+    } else {
+      console.log("in completed");
+      console.log("returning: "+ JSON.stringify(this.event.request.intent));
+      // Dialog is now complete and all required slots should be filled,
+      // so call your normal intent handler.
+      return this.event.request.intent;
+    }
+}
 
 // Give the handler object and it's functions to the lambda for
 // execution
