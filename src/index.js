@@ -23,6 +23,8 @@ const handlers = {
     },
     // this is where the user will ask alexa, what is "example of colloqialism here"?
     'ColloqIntent': function () {
+      var filledSlots = delegateSlotCollection.call(this);
+      
       let speechOutput = colloq.sendResponse( slotValue );
       this.emit(':tell', speechOutput);
     },
@@ -41,6 +43,27 @@ const handlers = {
       this.emit(':tell', STOP_MESSAGE);
     }
 };
+
+// function to delegate slot collection to Alexa
+function delegateSlotCollection(){
+  console.log("in delegateSlotCollection");
+  console.log("current dialogState: "+this.event.request.dialogState);
+    if (this.event.request.dialogState === "STARTED") {
+      console.log("in Beginning");
+      var updatedIntent=this.event.request.intent;
+      this.emit(":delegate", updatedIntent);
+    } else if (this.event.request.dialogState !== "COMPLETED") {
+      console.log("in not completed");
+      // return a Dialog.Delegate directive with no updatedIntent property.
+      this.emit(":delegate");
+    } else {
+      console.log("in completed");
+      console.log("returning: "+ JSON.stringify(this.event.request.intent));
+      // Dialog is now complete and all required slots should be filled,
+      // so call your normal intent handler.
+      return this.event.request.intent;
+    }
+}
 
 // Give the handler object and it's functions to the lambda for
 // execution
