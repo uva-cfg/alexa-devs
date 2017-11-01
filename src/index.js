@@ -6,6 +6,7 @@
 
 // load additional files/modules needed
 const feature1 = require('./feature1/res.js');
+const phoneNumbers = require('./phoneNumbers/res.js');
 const Alexa = require('alexa-sdk');
 
 // define constants
