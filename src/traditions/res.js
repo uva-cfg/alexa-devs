@@ -19,7 +19,7 @@ var traditions = [
 'Prior to World War two, students began to oppose the traditional attire of coats and ties worn around grounds and to class. By the nineteen seventies, most students did not wear coats and ties, except as tradition at home football games. This is likely where the tradition known as guys in ties and girls in pearls came from.',
 'In September of two thousand three, the new head football coach Al Groh asked fans to wear orange at the stadium. This lasting effort to promote team spirit is seen today with an emphasis on orange by fans in the stadium.',
 'In late nineteen twenty three, our current Beta bridge was built over the Chesapeake and Ohio train tracks. There was a bridge in the same location built in the early 1850�s, but it was replaced by our current bridge to prepare university roads for automobiles. Its name comes from the Beta Theta Pi fraternity house located nearby.',
-'Beta bridge�s first documented painting was in fall of nineteen twenty six. Up until the late nineteen sixties, the bridge was mostly painted with sports scores and victory celebrations. The now-popular tradition of painting the bridge with messages, graffiti, and event information became popular after St. Patrick�s day nineteen sixty seven, when students painted the bridge green. Supporters of the English throne fought back by painting the bridge over in red with God save the Queen, to which the Irish fans responded by changing queen to green.',
+'Beta bridge\'s first documented painting was in fall of nineteen twenty six. Up until the late nineteen sixties, the bridge was mostly painted with sports scores and victory celebrations. The now-popular tradition of painting the bridge with messages, graffiti, and event information became popular after St. Patrick�s day nineteen sixty seven, when students painted the bridge green. Supporters of the English throne fought back by painting the bridge over in red with God save the Queen, to which the Irish fans responded by changing queen to green.',
 'In the late sixties and early seventies, painting beta bridge was not as accepted a tradition as it is today. In march of nineteen seventy one, five members of pi lambda phi were arrested by city police. Now the city of Charlottesville tolerates the painting of beta bridge as student�s artistic expression.',
 'The tradition of streaking the lawn appears to have became popular in the mid seventies. In the early seventies, streaking became a fad in Los Angeles, and was then spread across the nation when a streaking incident occurred on air during the oscars. In February of that year, first-year students staged a mass streak in the mccormick road dorm area. Unfortunately, a world streaking record wasn�t set, but the first documented female streaker was present.',
 'The streaking tradition holds that before a student graduates, he or she must run naked from the steps of the rotunda down to the statue of Homer, kiss the statue, and then run back. An added requirement is that the student must look through the keyhole of the Rotunda toward Jefferson�s statue and whisper good night mr. jefferson before putting their clothes back on.',
@@ -28,12 +28,16 @@ var traditions = [
 'Boxing was once known as the major sport in charlottesville. Students began engaging in the sport informally before the civil war. In eighteen ninety one, William Lambeth became superintendent of buildings and grounds and director of athletics. He oversaw boxing matches in one of the university�s first gyms. In nineteen twenty seven, boxing became an official varsity sport, just in time to be hosted in the new Memorial Gymnasium, or Mem Gym as it is now called. There is still a boxing practice room in the basement.',
 ];
 
-
-
+const TRADITION_PREFIX = 'Here\'s a U.V.A. tradition: '
 function sendResponse() {
+  //We take a random (valid) index for the array and result the string
+  const randomIndex = Math.floor(Math.random() * traditions.length);
+  const randomFact = traditions[randomIndex];
+  const fact = TRADITION_PREFIX + randomFact;
+
   console.log(this);
   //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-  return ('sorry, I don\'t have that functionality yet.');
+  return (fact);
 }
 
 module.exports = {

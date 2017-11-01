@@ -8,6 +8,7 @@
 // load additional files/modules needed
 const feature1 = require('./feature1/res.js');
 const slotExample = require('./slotExample/res.js');
+const traditions = require('./traditions/res.js');
 const Alexa = require('alexa-sdk');
 
 // define constants
@@ -39,6 +40,10 @@ const handlers = {
     },
     'FeatureOneIntent': function () {
      let speechOutput = feature1.sendResponse;
+     this.emit(':tell', speechOutput);
+    },
+    'TraditionsBeSwagginIntent': function () {
+     let speechOutput = traditions.sendResponse;
      this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
