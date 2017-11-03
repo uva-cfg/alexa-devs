@@ -21,6 +21,18 @@ const handlers = {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
       //TEST: this.emit('FeatureOneIntent');
     },
+    'TheyNeedToEatIntent': function () {
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot
+      let slotVal = this.event.request.intent.slots.diningHall.value;
+      console.log(slotVal);
+
+      // construct response
+      let speechOutput = mealExchange.sendResponse(slotVal);
+      this.emit(':tell', speechOutput);
+    },
     // Feature1Intent when user says 'Show feature one.'
     'FeatureOneIntent': function () {
       let speechOutput = feature1.sendResponse;
@@ -42,8 +54,24 @@ const handlers = {
     }
 };
 
-module.exports = {
-    slotValue : mySlot
+function delegateSlotCollection(){
+  console.log("in delegateSlotCollection");
+  console.log("current dialogState: "+this.event.request.dialogState);
+    if (this.event.request.dialogState === "STARTED") {
+      console.log("in Beginning");
+      var updatedIntent=this.event.request.intent;
+      this.emit(":delegate", updatedIntent);
+    } else if (this.event.request.dialogState !== "COMPLETED") {
+      console.log("in not completed");
+      // return a Dialog.Delegate directive with no updatedIntent property.
+      this.emit(":delegate");
+    } else {
+      console.log("in completed");
+      console.log("returning: "+ JSON.stringify(this.event.request.intent));
+      // Dialog is now complete and all required slots should be filled,
+      // so call your normal intent handler.
+      return this.event.request.intent;
+    }
 }
 
 // Give the handler object and it's functions to the lambda for
