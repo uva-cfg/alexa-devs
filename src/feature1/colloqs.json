@@ -16,8 +16,4 @@
   "stacks" : "Study spacec in the bottom of Alderman library, that is completely silent",
   "art quad" : "quad of frat houses by the art museum",
   "Sack" : "Student activities center",
-  "wilsdorf" : "Building next to chem building with argo tea in it"}
-
-
-/** Add in more of these for the buildings, and possibly tell location based upon location of other buildings?
-    i.e. What is wilsdorf? "Building next to chem building with argo tea" **/
+  "wilsdorf" : "Building next to chem building with argo tea in it" }
