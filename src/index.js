@@ -9,7 +9,7 @@
 const feature1 = require('./feature1/res.js');
 const slotExample = require('./slotExample/res.js');
 const Alexa = require('alexa-sdk');
-const phoneNumbers = require('./phoneNumebrs/res.js');
+const phoneNumbers = require('./phoneNumbers/res.js');
 
 // define constants
 const HELP_MESSAGE = "Welcome to Cav Assistant. For information on my capabilities, ask me to tell you what I can do.";
@@ -43,7 +43,7 @@ const handlers = {
 
     //phone numebrs intent
     'PhoneNumberIntent': function () {
-      var filledSLots = delgateSlotCollection.call(this);
+      var filledSlots = delgateSlotCollection.call(this);
       let slotId = this.event.request.intent.slots.place.id;
       console.log(slotId);
       let speechOutput = phoneNumbers.sendResponse(slotId);
