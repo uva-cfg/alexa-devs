@@ -34,7 +34,7 @@ const handlers = {
       var filledSlots = delegateSlotCollection.call(this);
 
       // access collected slot
-      let slotVal = this.event.request.intent.slots.place.value;
+      let slotVal = this.event.request.intent.slots.animal.value;
       console.log(slotVal);
 
       // construct response
