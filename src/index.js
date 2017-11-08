@@ -7,7 +7,8 @@
 // load additional files/modules needed
 const colloq = require('./feature1/res.js');
 const Alexa = require('alexa-sdk');
-var slotValue = this.event.request.intent.slots.colloqialism.value; //make a slot for colloqialism on the skills builder for this to access
+
+ //make a slot for colloqialism on the skills builder for this to access
 // define constants
 const HELP_MESSAGE = "Welcome to Cav Assistant. For information on my capabilities, ask me to tell you what I can do.";
 const HELP_REPROMPT = "Hi there. Ask me to tell you a U.V.A. tradition or for the phone number of a place nearby.";
@@ -24,7 +25,7 @@ const handlers = {
     // this is where the user will ask alexa, what is "example of colloqialism here"?
     'ColloqIntent': function () {
       var filledSlots = delegateSlotCollection.call(this);
-      
+      var slotValue = this.event.request.intent.slots.colloqialism.value;
       let speechOutput = colloq.sendResponse( slotValue );
       this.emit(':tell', speechOutput);
     },
