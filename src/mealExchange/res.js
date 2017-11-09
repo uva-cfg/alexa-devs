@@ -66,5 +66,6 @@ module.exports = {
     //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
     let theSlotValue = slotVal;
     return (theSlotValue);
+    // return (mealExchange[theSlotValue]); // tentatively provided that we get the echosim working with repeating the slot value
   }
 }
