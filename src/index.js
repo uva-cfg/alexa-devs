@@ -40,8 +40,9 @@ const handlers = {
       // construct response
       let speechOutput = slotExample.sendResponse(slotVal);
       this.emit(':tell', speechOutput);
+    },
 
-    //phone numebrs intent
+    //phone numbers intent
     'PhoneNumberIntent': function () {
       var filledSlots = delgateSlotCollection.call(this);
       let slotId = this.event.request.intent.slots.place.id;
