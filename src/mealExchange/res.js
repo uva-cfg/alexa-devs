@@ -3,7 +3,6 @@
 
 // owen wilson was here
 var Alexa = require('alexa-sdk');
-var index = require('index.js');
 
 var mealExchange = {
   "Grilleworks":["Hamburger", "Malibu Veggie Burger", "Grilled Cheese Sandwhich", "3 Piece Chicken Tenders"],
@@ -25,7 +24,7 @@ var mealExchange = {
   "Java City":["One pastry with a medium coffee or hot tea", "One pastry with a regular fountain soda", "One fresh market smoothie", "Yogurt, whole fruit, and a medium coffee or hot tea", "Yogurt, whole fruit, and a regular fountain soda"],
   "Einstein Bros. Bagels at Rice Hall":["Breakfast Sandwhich", "Bagel and Shmear"],
   "Einstein Bros. Bagels at the Bookstore":["Bagel and Shmear"],
-}
+};
 /*
 var diningHours = {
   "O'Hill":["Mon-Fri from 7AM - 9PM", "Sat-Sun from 8AM - 9PM"],
@@ -58,14 +57,21 @@ var diningHours = {
   "Street Eats Foodtruck":["Mon-Fri from 11AM - 3PM"],
   "Subway":["Mon-Fri from 10:30AM - 8PM"],
   "West Range":["Mon-Thu from 9AM - 8PM", "Fri from 9AM - 3PM"]
-}
+};
 */
 module.exports = {
   sendResponse: function sendResponse(slotVal) {
     console.log(this);
     //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-    let theSlotValue = slotVal;
-    return (theSlotValue);
-    // return (mealExchange[theSlotValue]); // tentatively provided that we get the echosim working with repeating the slot value
+    //let theSlotValue = slotVal;
+    //return (theSlotValue);
+
+    var res = "Sorry, I couldn't find hours for that location.";
+    for(var key in mealExchange ) {
+        if( key == slotVal)
+          res = mealExchange[key];  //check later to make sure that the intent that we are getting lines up with the keys
+    }
+    return (res);
+
   }
 }
