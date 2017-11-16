@@ -7,7 +7,7 @@
 
 // load additional files/modules needed
 const feature1 = require('./feature1/res.js');
-const slotExample = require('./slotExample/res.js');
+//const slotExample = require('./slotExample/res.js');
 const Alexa = require('alexa-sdk');
 const phoneNumbers = require('./phoneNumbers/res.js');
 
@@ -24,23 +24,20 @@ const handlers = {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
       //TEST: this.emit('FeatureOneIntent');
     },
-    'Unhandled': function(){
-      this.emit(':ask',"I do not understand.");
-    },
     // Slot Example Intent to show slot passing
-    'SlotExampleIntent': function () {
+    //'SlotExampleIntent': function () {
 
       // delegate slot collection to Alexa
-      var filledSlots = delegateSlotCollection.call(this);
+      //var filledSlots = delegateSlotCollection.call(this);
 
       // access collected slot
-      let slotVal = this.event.request.intent.slots.animal.value;
-      console.log(slotVal);
+      //let slotVal = this.event.request.intent.slots.animal.value;
+      //console.log(slotVal);
 
       // construct response
-      let speechOutput = slotExample.sendResponse(slotVal);
-      this.emit(':tell', speechOutput);
-    },
+      //let speechOutput = slotExample.sendResponse(slotVal);
+      //this.emit(':tell', speechOutput);
+    //},
 
     //phone numbers intent
     'PhoneNumberIntent': function () {
