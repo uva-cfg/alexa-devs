@@ -36,7 +36,15 @@ const handlers = {
     },
     // Feature1Intent when user says 'Show feature one.'
     'FeatureOneIntent': function () {
-      let speechOutput = feature1.sendResponse;
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot
+      let slotVal = this.event.request.intent.slots.diningHall.value;
+      console.log(slotVal);
+
+      // construct response
+      let speechOutput = feature1.sendResponse(slotVal);
       this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
