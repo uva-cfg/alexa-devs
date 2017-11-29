@@ -24,7 +24,7 @@ const handlers = {
     },
     // this is where the user will ask alexa, what is "example of colloqialism here"?
     'ColloqIntent': function () {
-      //var filledSlots = delegateSlotCollection.call(this);
+      var filledSlots = delegateSlotCollection.call(this);
       var slotValue = this.event.request.intent.slots.slang.value;
       console.log(slotValue);
       let speechOutput = colloq.sendResponse( slotValue );
@@ -47,7 +47,7 @@ const handlers = {
 };
 
 // function to delegate slot collection to Alexa
-/** function delegateSlotCollection(){
+function delegateSlotCollection(){
   console.log("in delegateSlotCollection");
   console.log("current dialogState: " + this.event.request.dialogState);
     if (this.event.request.dialogState === "STARTED") {
@@ -65,7 +65,7 @@ const handlers = {
       // so call your normal intent handler.
       return this.event.request.intent;
     }
-} **/
+}
 
 // Give the handler object and it's functions to the lambda for
 // execution
