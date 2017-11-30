@@ -1,10 +1,15 @@
 // res.js
 // handles user input and response
+var Alexa = require('alexa-sdk');
+var phone = require('./phone.json');
 module.exports = {
-  sendResponse: function sendResponse(slotId) {
-    console.log(this);
-    //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-    var theSlotID = slotId;
-    return (theSlotID);
-  }
+  sendResponse: function sendResponse(slotValue) {
+    var res = "I didn't find anything";
+    for (var key in phone){
+      if(key==slotValue){
+        res = phone[key];
+      }
+    }
+    return res;
+  },
 }

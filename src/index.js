@@ -42,10 +42,10 @@ const handlers = {
     //phone numbers intent
     'PhoneNumberIntent': function () {
       var filledSlots = delegateSlotCollection.call(this);
-      let slotId = this.event.request.intent.slots.place.resolutions[0].values[0].value.id;
-      console.log("the slotId is " +slotId);
-      //let speechOutput = phoneNumbers.sendResponse(slotId);
-      this.emit(':tell', slotId);
+      var slotValue = this.event.request.intent.slots.place.value;
+      console.log(slotValue);
+      let speechOutput = phoneNumbers.sendResponse( slotValue );
+      this.emit(':tell', speechOutput);
     },
     'FeatureOneIntent': function () {
      let speechOutput = feature1.sendResponse;
