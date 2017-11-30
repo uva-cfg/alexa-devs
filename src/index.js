@@ -41,11 +41,11 @@ const handlers = {
 
     //phone numbers intent
     'PhoneNumberIntent': function () {
-      var filledSlots = delgateSlotCollection.call(this);
-      let slotId = this.event.request.intent.slots.place.id;
-      console.log(slotId);
-      let speechOutput = phoneNumbers.sendResponse(slotId);
-      this.emit(':tell', speechOutput);
+      var filledSlots = delegateSlotCollection.call(this);
+      let slotId = this.event.request.intent.slots.place.resolutions[0].values[0].value.id;
+      console.log("the slotId is " +slotId);
+      //let speechOutput = phoneNumbers.sendResponse(slotId);
+      this.emit(':tell', slotId);
     },
     'FeatureOneIntent': function () {
      let speechOutput = feature1.sendResponse;

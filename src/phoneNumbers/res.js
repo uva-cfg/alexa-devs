@@ -4,7 +4,7 @@ module.exports = {
   sendResponse: function sendResponse(slotId) {
     console.log(this);
     //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-    let theSlotID = slotId;
+    var theSlotID = slotId;
     return (theSlotID);
   }
 }
