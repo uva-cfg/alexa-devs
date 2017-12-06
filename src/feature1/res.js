@@ -2,13 +2,15 @@
 // handles user input and response
 
 var Alexa = require('alexa-sdk');
-
-function sendResponse() {
-  console.log(this);
-  //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-  return ('sorry, I don\'t have that functionality yet.');
-}
+var colloqs = require('./colloqs.json');
 
 module.exports = {
-  sendResponse: sendResponse(),
+  sendResponse: function sendResponse(slotValue) {
+    var res = "I didn't find anything";
+    for (var key in colloqs) {
+      if (key == slotValue) {
+        res = colloqs[key]; //TO-DO Continue to update the JSON file with better descriptions of the locations,
+    return res;             //and make the slots match up better
+}
+  },
 }
