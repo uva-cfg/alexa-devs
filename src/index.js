@@ -5,10 +5,10 @@
 'use strict';
 
 // load additional files/modules needed
-const colloq = require('./feature1/res.js');
+const colloq = require('./colloqIntent/res.js');
 const Alexa = require('alexa-sdk');
 
- //make a slot for colloqialism on the skills builder for this to access
+//make a slot for colloqialism on the skills builder for this to access
 // define constants
 const HELP_MESSAGE = "Welcome to Cav Assistant. For information on my capabilities, ask me to tell you what I can do.";
 const HELP_REPROMPT = "Hi there. Ask me to tell you a U.V.A. tradition or for the phone number of a place nearby.";
@@ -20,7 +20,6 @@ const handlers = {
     // LaunchRequest when user says 'Alexa, open Cav Assistant'
     'LaunchRequest': function () {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
-      //TEST: this.emit('FeatureOneIntent');
     },
     // this is where the user will ask alexa, what is "example of colloqialism here"?
     'ColloqIntent': function () {

@@ -9,9 +9,8 @@ module.exports = {
     var res = "I didn't find anything";
     for (var key in colloqs) {
       if (key == slotValue) {
-        res = colloqs[key]; //check later to make sure that the intent that we are getting lines up with the keys
-      }
-    }
-    return res;
+        res = colloqs[key]; //TO-DO Continue to update the JSON file with better descriptions of the locations,
+    return res;             //and make the slots match up better
+}
   },
 }
