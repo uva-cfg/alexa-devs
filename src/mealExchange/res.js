@@ -15,7 +15,7 @@ var mealExchange = {
   "sidley austin cafe":["Breakfast Grill Sandwich", "Choice of Entree or Side"],
   "west range":["Colonnade Classic", "Carolina Barbecue Sandwich with a side salad or french fries", "Fresh Vegetable Wrap with a side salad or french fries", "Specialty Grilled Cheese with a side salad or french fries"],
   "the pav":["chick fil a has a chicken Sandwich and Spicy chicken Sandwich", "subway has Ham, Veggie, Cold Cut, Turkey, or BLT 6 inch sub", "and there are no meal exchange options for 5 guys"],
-  "cafe mcleod":["Chicken, Pear, and Walnut Salad", "Chicken Caesar Wrap", "6 inch Italian Sub", "Tuna Salad on Wheatberry", "Mediterranean Veggie Ciabatta", "Cheesy Sun-Dried Tomato Melt"],
+  "cafe McLeod":["Chicken, Pear, and Walnut Salad", "Chicken Caesar Wrap", "6 inch Italian Sub", "Tuna Salad on Wheatberry", "Mediterranean Veggie Ciabatta", "Cheesy Sun-Dried Tomato Melt"],
   "java city":["One pastry with a medium coffee or hot tea", "One pastry with a regular fountain soda", "One fresh market smoothie", "Yogurt, whole fruit, and a medium coffee or hot tea", "Yogurt, whole fruit, and a regular fountain soda"],
   "einsteins":["Options at Rice Hall are a", "Breakfast Sandwhich", "Bagel and Shmear", "and options at the bookstore are bagel and shmear"]
 };
