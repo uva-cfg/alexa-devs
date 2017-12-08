@@ -2,7 +2,8 @@
 // handles user input and response
 
 var Alexa = require('alexa-sdk');
-//test
+
+//TO-DO: Edit these really long traditions 
 const traditions = [
 'The university\'s traditional colors used to be cardinal and grey, but now they are blue and orange.',
 'The Jefferson Society, founded in eighteen twenty five, still meets today.',
@@ -29,17 +30,13 @@ const traditions = [
 ];
 
 const TRADITION_PREFIX = 'Here\'s a U.V.A. tradition: ';
-function sendResponse() {
-  //We take a random (valid) index for the array and result the string
-  const randomIndex = Math.floor(Math.random() * traditions.length);
-  const randomFact = traditions[randomIndex];
-  const fact = TRADITION_PREFIX + randomFact;
-
-  console.log(this);
-  //TEST: this.emit(':tell', 'Sorry, I don\'t have that functionality yet.');
-  return (fact);
-}
 
 module.exports = {
-  sendResponse: sendResponse(),
+  sendResponse: function sendResponse(randomIndex) {
+    const randomFact = traditions[randomIndex];
+    const fact = TRADITION_PREFIX + randomFact;
+
+    console.log(this);
+    return (fact);
+  },
 }

@@ -1,6 +1,5 @@
 // index.js
 // Alexa Dev Team Fall 2017
-// yay
 // Code for Good @UVa
 
 'use strict';
@@ -22,7 +21,6 @@ const handlers = {
     // LaunchRequest when user says 'Alexa, open Cav Assistant'
     'LaunchRequest': function () {
       this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
-      //TEST: this.emit('FeatureOneIntent');
     },
     // Slot Example Intent to show slot passing
     'SlotExampleIntent': function () {
@@ -38,13 +36,16 @@ const handlers = {
       let speechOutput = slotExample.sendResponse(slotVal);
       this.emit(':tell', speechOutput);
     },
+    // Dummy sample intent
     'FeatureOneIntent': function () {
      let speechOutput = feature1.sendResponse;
      this.emit(':tell', speechOutput);
     },
     'TraditionsBeSwagginIntent': function () {
-     let speechOutput = traditions.sendResponse;
-     this.emit(':tell', speechOutput);
+      //TO-DO: figure out a way to get this to work in res instead
+      var randomIndex = Math.floor(Math.random() * 22);
+      let speechOutput = traditions.sendResponse(randomIndex);
+      this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
     'AMAZON.HelpIntent': function () {
