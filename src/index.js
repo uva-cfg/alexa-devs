@@ -7,6 +7,7 @@
 // load additional files/modules needed
 const feature1 = require('./feature1/res.js');
 const mealExchange = require('./mealExchange/res.js');
+const mealHours = require('./mealHours/res.js');
 const Alexa = require('alexa-sdk');
 //var mySlot = this.event.request.intent.slots.SlotName.value;
 // define constants
@@ -32,6 +33,18 @@ const handlers = {
 
       // construct response
       let speechOutput = mealExchange.sendResponse(slotVal);
+      this.emit(':tell', speechOutput);
+    },
+    'HappyFoodTimesIntent': function () {
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot
+      let slotVal = this.event.request.intent.slots.diningHall.value;
+      console.log(slotVal);
+
+      // construct response
+      let speechOutput = mealHours.sendResponse(slotVal);
       this.emit(':tell', speechOutput);
     },
     // Feature1Intent when user says 'Show feature one.'
