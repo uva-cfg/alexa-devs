@@ -5,6 +5,7 @@
 'use strict';
 
 // load additional files/modules needed
+const traditions = require('./traditions/res.js');
 const colloq = require('./colloqIntent/res.js');
 const Alexa = require('alexa-sdk');
 
@@ -27,6 +28,17 @@ const handlers = {
       var slotValue = this.event.request.intent.slots.slang.value;
       console.log(slotValue);
       let speechOutput = colloq.sendResponse( slotValue );
+      this.emit(':tell', speechOutput);
+    },
+    // Dummy sample intent
+    'FeatureOneIntent': function () {
+     let speechOutput = feature1.sendResponse;
+     this.emit(':tell', speechOutput);
+    },
+    'TraditionsBeSwagginIntent': function () {
+      //TO-DO: figure out a way to get this to work in res instead
+      var randomIndex = Math.floor(Math.random() * 22);
+      let speechOutput = traditions.sendResponse(randomIndex);
       this.emit(':tell', speechOutput);
     },
     // HelpIntent when user says 'Help'
