@@ -7,6 +7,8 @@
 // load additional files/modules needed
 const traditions = require('./traditions/res.js');
 const colloq = require('./colloqIntent/res.js');
+const mealExchange = require('./mealExchange/res.js');
+const mealHours = require('./mealHours/res.js');
 const Alexa = require('alexa-sdk');
 
 //make a slot for colloqialism on the skills builder for this to access
@@ -34,6 +36,30 @@ const handlers = {
     'FeatureOneIntent': function () {
      let speechOutput = feature1.sendResponse;
      this.emit(':tell', speechOutput);
+    },
+    'TheyNeedToEatIntent': function () {
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot
+      let slotVal = this.event.request.intent.slots.diningHall.value;
+      console.log(slotVal);
+
+      // construct response
+      let speechOutput = mealExchange.sendResponse(slotVal);
+      this.emit(':tell', speechOutput);
+    },
+    'HappyFoodTimesIntent': function () {
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot
+      let slotVal = this.event.request.intent.slots.diningHall.value;
+      console.log(slotVal);
+
+      // construct response
+      let speechOutput = mealHours.sendResponse(slotVal);
+      this.emit(':tell', speechOutput);
     },
     'TraditionsBeSwagginIntent': function () {
       //TO-DO: figure out a way to get this to work in res instead
