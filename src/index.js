@@ -32,6 +32,14 @@ const handlers = {
       let speechOutput = colloq.sendResponse( slotValue );
       this.emit(':tell', speechOutput);
     },
+    // PhoneNumberIntent
+    'PhoneNumberIntent': function () {
+      var filledSlots = delegateSlotCollection.call(this);
+      var slotValue = this.event.request.intent.slots.place.value;
+      console.log(slotValue);
+      let speechOutput = phoneNumbers.sendResponse( slotValue );
+      this.emit(':tell', speechOutput);
+    },
     // Dummy sample intent
     'FeatureOneIntent': function () {
      let speechOutput = feature1.sendResponse;
