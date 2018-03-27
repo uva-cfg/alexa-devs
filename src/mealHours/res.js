@@ -6,7 +6,7 @@ var Alexa = require('alexa-sdk');
 
 var diningHours = {
   "o hill":["O'Hill is open Mon-Fri from 7AM - 9PM", "Sat-Sun from 8AM - 9PM"],
-  "newcomb":["Newcomb is open Mon-Thu	from 7AM - 8PM", "Fri from 7AM - 2:15PM", "Saturday from 10AM - 2PM", "Sunday from 10AM - 8PM"],
+  "newcomb":["Newcomb is open Mon-Thu	from 7AM - 8PM", "Friday from 7AM - 2:15PM", "Saturday from 10AM - 2PM", "Sunday from 10AM - 8PM"],
   "runk":["Runk is open Mon-Fri from 7AM - 8PM", "Sat-Sun from 10AM - 8PM"],
   "1819 at McLeod":["1819 at McLeod is open Mon-Fri from 7:30AM - 1:30PM"],
   "1819 at newcomb":["1819 at Newcomb is open Mon-Fri from 8AM - 11PM", "Saturday from 10AM - 4PM", "Sunday	from 3PM - 11PM"],
