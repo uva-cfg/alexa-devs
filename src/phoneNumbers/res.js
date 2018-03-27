@@ -6,10 +6,11 @@ module.exports = {
   sendResponse: function sendResponse(slotValue) {
     var res = "I didn't find anything";
     for (var key in phone){
-      if(key==slotValue){
-        res = phone[key];
+      if(key.toLowerCase()==slotValue.toLowerCase()){
+        res = phone[key.toLowerCase()];
       }
     }
+    console.log(res);
     return res;
   },
 }

@@ -9,6 +9,7 @@ const traditions = require('./traditions/res.js');
 const colloq = require('./colloqIntent/res.js');
 const mealExchange = require('./mealExchange/res.js');
 const mealHours = require('./mealHours/res.js');
+const phoneNumbers = require('./phoneNumbers/res.js');
 const Alexa = require('alexa-sdk');
 
 //make a slot for colloqialism on the skills builder for this to access
