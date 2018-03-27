@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/uva-cfg/alexa-devs/issues"
   },
-  "homepage": "https://github.com/uva-cfg/alexa-devs#readme"
+  "homepage": "https://github.com/uva-cfg/alexa-devs#readme",
+  "dependencies": {
+    "google-distance": "^1.0.1"
+  }
 }
