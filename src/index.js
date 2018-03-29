@@ -74,6 +74,17 @@ const handlers = {
       var randomIndex = Math.floor(Math.random() * 22);
       let speechOutput = traditions.sendResponse(randomIndex);
       this.emit(':tell', speechOutput);
+    }
+    'LousListIntent': function () {
+      var filledSlots = delegateSlotCollection.call(this);
+      // grab the slot values
+      let department_abbreviation = this.event.request.intent.slots.department_abbreviation.value;
+      let course_num = this.event.request.intent.slots.course_num.value;
+
+      // make string to print out (testing)
+      let string = department_abbreviation + course_num
+      this.emit(':tell', string);
+
     },
     // HelpIntent when user says 'Help'
     'AMAZON.HelpIntent': function () {
