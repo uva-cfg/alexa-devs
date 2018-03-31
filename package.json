@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/uva-cfg/alexa-devs#readme",
   "dependencies": {
+    "alexa-sdk": "^1.0.25",
     "google-distance": "^1.0.1"
   }
 }
