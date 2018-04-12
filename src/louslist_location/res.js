@@ -11,7 +11,7 @@ module.exports = {
   sendResponse: function sendResponse(abbreviation, number) {
     var res = abbreviation+" "+number;
 
-    var allClasses = JSON.parse(data);
+    var allClasses = data;
     var validClasses=[];
     var l = allClasses.length;
     for(var i = 0; i < l; ++i) {
@@ -40,6 +40,7 @@ module.exports = {
       res+=" and "+iter.next().value();
     }
     //console.log("Result is: " + res);
+    console.log(res);
     return (res);
 
   }
