@@ -11,6 +11,7 @@ const mealExchange = require('./mealExchange/res.js');
 const mealHours = require('./mealHours/res.js');
 const Alexa = require('alexa-sdk');
 const lousListProfessor = require('./louslist_professor/res.js');
+const lousListLocation = require('./louslist_location/res.js');
 
 //make a slot for colloqialism on the skills builder for this to access
 // define constants
@@ -75,7 +76,7 @@ const handlers = {
       var randomIndex = Math.floor(Math.random() * 22);
       let speechOutput = traditions.sendResponse(randomIndex);
       this.emit(':tell', speechOutput);
-    }
+    },
     'LousListProfessor': function () {
       var filledSlots = delegateSlotCollection.call(this);
       // grab the slot values
@@ -86,6 +87,20 @@ const handlers = {
       // make string to print out (testing)
       // let string = department_abbreviation + course_num;
       let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_num);
+      this.emit(':tell', speechOutput);
+
+      // send to res file
+      // let speechOutput = lousListProfessor.sendResponse(department_abbreviation)
+
+    },
+    'LousListLocationIntent': function () {
+      var filledSlots = delegateSlotCollection.call(this);
+      // grab the slot values
+      let department_abbreviation = this.event.request.intent.slots.department_abbreviation.value;
+      let course_number = this.event.request.intent.slots.FOUR_DIGIT_NUMBER.value; //Issue with what I should be using for slot.property
+      // make string to print out (testing)
+      // let string = department_abbreviation + course_num;
+      let speechOutput = lousListLocation.sendResponse(department_abbreviation, course_number);
       this.emit(':tell', speechOutput);
 
       // send to res file
