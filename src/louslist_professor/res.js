@@ -1,5 +1,5 @@
-res.js
-handles user input and response
+//res.js
+//handles user input and response
 
 var Alexa = require('alexa-sdk');
 var classes = require('./fake.json');
