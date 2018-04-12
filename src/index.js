@@ -87,7 +87,7 @@ const handlers = {
       //console.log(course_num);
       // make string to print out (testing)
       // let string = department_abbreviation + course_num;
-      // let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_num);
+      //let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_num);
       this.emit(':tell', department_abbreviation);
 
       // send to res file
@@ -98,7 +98,7 @@ const handlers = {
       var filledSlots = delegateSlotCollection.call(this);
       // grab the slot values
       let department_abbreviation = this.event.request.intent.slots.department_abbreviation.value;
-      //let course_number = this.event.request.intent.slots.FOUR_DIGIT_NUMBER.value; //Issue with what I should be using for slot.property
+      let course_number = this.event.request.intent.slots.AMAZON.FOUR_DIGIT_NUMBER.value; //Issue with what I should be using for slot.property
       console.log(this.event.request.intent.slots);
       console.log(department_abbreviation);
       // make string to print out (testing)
