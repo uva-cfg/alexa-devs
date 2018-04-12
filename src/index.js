@@ -10,6 +10,7 @@ const colloq = require('./colloqIntent/res.js');
 const mealExchange = require('./mealExchange/res.js');
 const mealHours = require('./mealHours/res.js');
 const Alexa = require('alexa-sdk');
+const lousListProfessor = require('./louslist_professor/res.js');
 
 //make a slot for colloqialism on the skills builder for this to access
 // define constants
@@ -75,17 +76,21 @@ const handlers = {
       let speechOutput = traditions.sendResponse(randomIndex);
       this.emit(':tell', speechOutput);
     }
-    'LousListIntent': function () {
-      var filledSlots = delegateSlotCollection.call(this);
-      // grab the slot values
-      let department_abbreviation = this.event.request.intent.slots.department_abbreviation.value;
-      let course_num = this.event.request.intent.slots.course_num.value;
-
-      // make string to print out (testing)
-      let string = department_abbreviation + course_num
-      this.emit(':tell', string);
-
-    },
+    // 'LousListProfessor': function () {
+    //   var filledSlots = delegateSlotCollection.call(this);
+    //   // grab the slot values
+    //   let department_abbreviation = this.event.request.intent.slots.department_abbreviation.value;
+    //   let course_num = this.event.request.intent.slots.course_num.value;
+    //   console.log(department_abbreviation);
+    //   console.log(course_num);
+    //   // make string to print out (testing)
+    //   let string = department_abbreviation + course_num;
+    //   this.emit(':tell', string);
+    //
+    //   // send to res file
+    //   // let speechOutput = lousListProfessor.sendResponse(department_abbreviation)
+    //
+    // },
     // HelpIntent when user says 'Help'
     'AMAZON.HelpIntent': function () {
       const speechOutput = HELP_MESSAGE;
