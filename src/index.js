@@ -81,13 +81,13 @@ const handlers = {
       var filledSlots = delegateSlotCollection.call(this);
       // grab the slot values
       let department_abbreviation = this.event.request.intent.slots.department_abbreviation.value;
-      //let course_num = this.event.request.intent.slots.course_num.value;
+      let course_number = this.event.request.intent.slots.course_num.value;
+
       console.log(this.event.request.intent.slots);
       console.log(department_abbreviation);
-      //console.log(course_num);
+      console.log(course_num);
       // make string to print out (testing)
-      // let string = department_abbreviation + course_num;
-      //let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_num);
+      let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_num)
       this.emit(':tell', department_abbreviation);
 
       // send to res file
