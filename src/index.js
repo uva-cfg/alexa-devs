@@ -88,8 +88,8 @@ const handlers = {
       console.log(department_abbreviation);
       console.log(course_num);
       // make string to print out (testing)
-      let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_num)
-      this.emit(':tell', department_abbreviation);
+      let speechOutput = lousListProfessor.sendResponse(department_abbreviation, course_number)
+      this.emit(':tell', speechOutput);
 
       // send to res file
       // let speechOutput = lousListProfessor.sendResponse(department_abbreviation)
