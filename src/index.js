@@ -5,12 +5,15 @@
 'use strict';
 
 // load additional files/modules needed
-const traditions = require('./traditions/res.js');
-const colloq = require('./colloqIntent/res.js');
-const mealExchange = require('./mealExchange/res.js');
-const mealHours = require('./mealHours/res.js');
-const phoneNumbers = require('./phoneNumbers/res.js');
+const distance = require('./distance/res.js')
+//const traditions = require('./traditions/res.js');
+//const colloq = require('./colloqIntent/res.js');
+//const mealExchange = require('./mealExchange/res.js');
+//const mealHours = require('./mealHours/res.js');
+//const phoneNumbers = require('./phoneNumbers/res.js');
 const Alexa = require('alexa-sdk');
+const googleMap = require('google-distance');
+const request = require('request');
 
 //make a slot for colloqialism on the skills builder for this to access
 // define constants
@@ -75,6 +78,37 @@ const handlers = {
       var randomIndex = Math.floor(Math.random() * 22);
       let speechOutput = traditions.sendResponse(randomIndex);
       this.emit(':tell', speechOutput);
+    },
+    'DistanceIntent': function () {
+      // delegate slot collection to Alexa
+      var filledSlots = delegateSlotCollection.call(this);
+
+      // access collected slot (uncomment when implement destination)
+      //let destinationSlotVal = this.event.request.intent.slots.destinations.value;
+      //console.log(destinationSlotVal);
+
+      // access collected slot
+      //let modeSlotVal = this.event.request.intent.slots.travelType.value;
+      //console.log(modeSlotVal);
+
+      //DistanceMatrix communication
+      var that = this;
+      var speechOutput = "Couldn't find your destination"
+      googleMap.get(
+        {
+          origin: 'Courtenay House, Charlottesville, VA',
+          destination: 'Rice Hall Information Technology Engineering Building, Charlottesville, VA',
+          mode: 'walking',
+          units: 'imperial'
+        }, function(err, dat) {
+              console.log(dat);
+              console.log(err);
+              console.log("The duration is " + dat.duration);
+              speechOutput = "It will take " + dat.duration + " to walk to your destination";
+              that.emit(':tell', speechOutput);
+              return;
+            }
+      );
     },
     // HelpIntent when user says 'Help'
     'AMAZON.HelpIntent': function () {
