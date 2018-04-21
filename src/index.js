@@ -84,12 +84,15 @@ const handlers = {
       var filledSlots = delegateSlotCollection.call(this);
 
       // access collected slot (uncomment when implement destination)
-      //let destinationSlotVal = this.event.request.intent.slots.destinations.value;
-      //console.log(destinationSlotVal);
+      let destinationSlotVal = this.event.request.intent.slots.destinations.value;
+      console.log(destinationSlotVal);
 
       // access collected slot
-      //let modeSlotVal = this.event.request.intent.slots.travelType.value;
-      //console.log(modeSlotVal);
+      let modeSlotVal = this.event.request.intent.slots.travelType.value;
+      console.log(modeSlotVal);
+
+      //Returns method of travel and destination in an array
+      let valuesToUse = distance.sendResponse(modeSlotVal, destinationSlotVal);
 
       //DistanceMatrix communication
       var that = this;
@@ -97,14 +100,14 @@ const handlers = {
       googleMap.get(
         {
           origin: 'Courtenay House, Charlottesville, VA',
-          destination: 'Rice Hall Information Technology Engineering Building, Charlottesville, VA',
-          mode: 'walking',
+          destination: valuesToUse[1],
+          mode: valuesToUse[0],
           units: 'imperial'
         }, function(err, dat) {
-              console.log(dat);
-              console.log(err);
+              //console.log(dat);
+              //console.log(err);
               console.log("The duration is " + dat.duration);
-              speechOutput = "It will take " + dat.duration + " to walk to your destination";
+              speechOutput = "It will take " + dat.duration + " to " + valuesToUse[0] + " to " + destinationSlotVal;
               that.emit(':tell', speechOutput);
               return;
             }
