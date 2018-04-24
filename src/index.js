@@ -83,16 +83,29 @@ const handlers = {
       // delegate slot collection to Alexa
       var filledSlots = delegateSlotCollection.call(this);
 
-      // access collected slot (uncomment when implement destination)
+      // access collected slots
       let destinationSlotVal = this.event.request.intent.slots.destinations.value;
-      console.log(destinationSlotVal);
-
-      // access collected slot
+      //console.log(destinationSlotVal);
       let modeSlotVal = this.event.request.intent.slots.travelType.value;
-      console.log(modeSlotVal);
+      //console.log(modeSlotVal);
+
+      // access user address
+      let deviceID = this.event.context.System.device.deviceId;
+      let apiAccessToken = this.event.context.System.apiAccessToken;
+      console.log("The deviceId is " + deviceId + " and the apiAccessToken is " + apiAccessToken);
+      let apiEndpoint = this.event.context.System.apiEndpoint;
 
       //Returns method of travel and destination in an array
       let valuesToUse = distance.sendResponse(modeSlotVal, destinationSlotVal);
+
+      //Determines if Alexa should say walk or bike in the response (will default to walk if theres an error)
+      var walkOrBike;
+      if(valuesToUse[0].equals("biking")) {
+        walkOrBike = "bike";
+      }
+      else {
+        walkOrBike = "walk";
+      }
 
       //DistanceMatrix communication
       var that = this;
@@ -107,7 +120,7 @@ const handlers = {
               //console.log(dat);
               //console.log(err);
               console.log("The duration is " + dat.duration);
-              speechOutput = "It will take " + dat.duration + " to " + valuesToUse[0] + " to " + destinationSlotVal;
+              speechOutput = "It will take " + dat.duration + " to " + walkOrBike + " to " + destinationSlotVal;
               that.emit(':tell', speechOutput);
               return;
             }
