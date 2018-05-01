@@ -10,6 +10,7 @@ const colloq = require('./colloqIntent/res.js');
 const mealExchange = require('./mealExchange/res.js');
 const mealHours = require('./mealHours/res.js');
 const phoneNumbers = require('./phoneNumbers/res.js');
+const transloc = require('./transloc/res.js');
 const Alexa = require('alexa-sdk');
 
 //make a slot for colloqialism on the skills builder for this to access
@@ -76,6 +77,10 @@ const handlers = {
       let speechOutput = traditions.sendResponse(randomIndex);
       this.emit(':tell', speechOutput);
     },
+    'DootDootIntent': function() {
+      let speechOutput = traditions.sendResponse(slotVal);
+      this.emit(':tell', speechOutput);
+    }
     // HelpIntent when user says 'Help'
     'AMAZON.HelpIntent': function () {
       const speechOutput = HELP_MESSAGE;
