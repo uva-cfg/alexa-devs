@@ -7,8 +7,13 @@ var googleMap = require('google-distance');
 var destinations = require('./destinations.json');
 var modeOfTransport = {
   "bike": "biking",
+  "biking": "biking",
   "ride my bike": "biking",
+  "riding my bike": "biking",
+  "bike ride": "biking",
+  "if i take my bike": "biking",
   "walk": "walking",
+  "walking": "walking"
 };
 
 

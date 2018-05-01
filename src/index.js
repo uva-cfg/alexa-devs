@@ -26,7 +26,11 @@ const APP_ID = 'amzn1.ask.skill.e7b4f881-c503-4c43-bc24-29c242ed0890';
 const handlers = {
     // LaunchRequest when user says 'Alexa, open Cav Assistant'
     'LaunchRequest': function () {
-      this.emit(':ask', "Welcome to Cav Assistant. What can I do for you?");
+      //Asks for some intent to be called and asks user to give permission to access address
+      this.emit(':ask', "Welcome to Cav Assistant. Please enable access to your address if you would like to use certain features. What can i do for you?");
+      let permissions = ['read::alexa:device:all:address'];
+      this.response.askforPermissionsConsentCard(permissions);
+      this.emit(':responseReady');
     },
     // this is where the user will ask alexa, what is "example of colloqialism here"?
     'ColloqIntent': function () {
@@ -85,22 +89,37 @@ const handlers = {
 
       // access collected slots
       let destinationSlotVal = this.event.request.intent.slots.destinations.value;
-      //console.log(destinationSlotVal);
+      console.log(destinationSlotVal);
       let modeSlotVal = this.event.request.intent.slots.travelType.value;
-      //console.log(modeSlotVal);
+      console.log(modeSlotVal);
 
-      // access user address
-      let deviceID = this.event.context.System.device.deviceId;
-      let apiAccessToken = this.event.context.System.apiAccessToken;
-      console.log("The deviceId is " + deviceId + " and the apiAccessToken is " + apiAccessToken);
-      let apiEndpoint = this.event.context.System.apiEndpoint;
+      // access user address if permission is granted
+      if(this.event.context.System.user.permissions) {
+        let deviceID = this.event.context.System.device.deviceId;
+        let token = this.event.context.System.apiAccessToken;
+        let apiEndpoint = this.event.context.System.apiEndpoint;
+        console.log("The deviceId is " + deviceId + ", the apiAccessToken is " + apiAccessToken + ", and the apiEndpoint is " + apiEndpoint);
+
+        //Gets the userAddress
+        let das = new Alexa.services.DeviceAddressService();
+        das.getFullAddress(deviceId, apiEndpoint, token).then((data) => {
+          console.log('The address of the deviceId should be: ' + JSON.stringify(data));
+        })
+        .catch((error) => {
+          this.response.speak('I\'m sorry. something went wrong.');
+          console.log("The error when retrieving address was " + error.message);
+        });
+      }
+      else {
+        console.log("It went into the else statement of finding devide Device address because the statement is " + this.event.context.System.user.permissions);
+      }
 
       //Returns method of travel and destination in an array
       let valuesToUse = distance.sendResponse(modeSlotVal, destinationSlotVal);
 
       //Determines if Alexa should say walk or bike in the response (will default to walk if theres an error)
       var walkOrBike;
-      if(valuesToUse[0].equals("biking")) {
+      if(valuesToUse[0] === "biking") {
         walkOrBike = "bike";
       }
       else {
