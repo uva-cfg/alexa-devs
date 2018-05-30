@@ -27,9 +27,7 @@ const handlers = {
     // LaunchRequest when user says 'Alexa, open Cav Assistant'
     'LaunchRequest': function () {
       //Asks for some intent to be called and asks user to give permission to access address
-      this.emit(':ask', "Welcome to Cav Assistant. Please enable access to your address if you would like to use certain features. What can i do for you?");
-      let permissions = ['read::alexa:device:all:address'];
-      this.response.askforPermissionsConsentCard(permissions);
+      this.emit(':ask', "Welcome to Cav Assistant. How may I assist you?");
       this.emit(':responseReady');
     },
     // this is where the user will ask alexa, what is "example of colloqialism here"?
@@ -88,34 +86,15 @@ const handlers = {
       var filledSlots = delegateSlotCollection.call(this);
 
       // access collected slots
+      let originSlotVal = this.event.request.intent.slots.origins.value;
+      console.log(originSlotVal);
       let destinationSlotVal = this.event.request.intent.slots.destinations.value;
       console.log(destinationSlotVal);
       let modeSlotVal = this.event.request.intent.slots.travelType.value;
       console.log(modeSlotVal);
 
-      // access user address if permission is granted
-      if(this.event.context.System.user.permissions) {
-        let deviceID = this.event.context.System.device.deviceId;
-        let token = this.event.context.System.apiAccessToken;
-        let apiEndpoint = this.event.context.System.apiEndpoint;
-        console.log("The deviceId is " + deviceId + ", the apiAccessToken is " + apiAccessToken + ", and the apiEndpoint is " + apiEndpoint);
-
-        //Gets the userAddress
-        let das = new Alexa.services.DeviceAddressService();
-        das.getFullAddress(deviceId, apiEndpoint, token).then((data) => {
-          console.log('The address of the deviceId should be: ' + JSON.stringify(data));
-        })
-        .catch((error) => {
-          this.response.speak('I\'m sorry. something went wrong.');
-          console.log("The error when retrieving address was " + error.message);
-        });
-      }
-      else {
-        console.log("It went into the else statement of finding devide Device address because the statement is " + this.event.context.System.user.permissions);
-      }
-
       //Returns method of travel and destination in an array
-      let valuesToUse = distance.sendResponse(modeSlotVal, destinationSlotVal);
+      let valuesToUse = distance.sendResponse(originSlotVal, modeSlotVal, destinationSlotVal);
 
       //Determines if Alexa should say walk or bike in the response (will default to walk if theres an error)
       var walkOrBike;
@@ -131,7 +110,7 @@ const handlers = {
       var speechOutput = "Couldn't find your destination"
       googleMap.get(
         {
-          origin: 'Courtenay House, Charlottesville, VA',
+          origin: valuesToUse[2],
           destination: valuesToUse[1],
           mode: valuesToUse[0],
           units: 'imperial'
